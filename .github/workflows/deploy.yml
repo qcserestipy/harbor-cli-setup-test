@@ -1,0 +1,28 @@
+name: Harbor Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Harbor CLI
+        uses: qcserestipy/harbor-cli-setup@v0.0.1
+        id: harbor-cli
+        with:
+          version: 'latest'
+
+      - name: Configure Harbor CLI
+        run: |
+          harbor-cli login ${{ secrets.HARBOR_URL }} \
+                --username ${{ secrets.HARBOR_USERNAME }} \
+                --password ${{ secrets.HARBOR_PASSWORD }}
+
+      - name: List Artifacts
+        run: |
+          harbor-cli artifact list <project_name>/<repository_name> -ojson
