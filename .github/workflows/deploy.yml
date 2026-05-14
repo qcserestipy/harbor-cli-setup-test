@@ -27,4 +27,4 @@ jobs:
 
       - name: List Artifacts
         run: |
-          harbor-cli artifact list ${{ vars.HARBOR_PROJECT }}/${{ vars.HARBOR_REPOSITORY }} -ojson
+          harbor-cli project list -ojson
