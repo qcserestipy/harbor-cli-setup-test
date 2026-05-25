@@ -27,4 +27,5 @@ jobs:
 
       - name: List Artifacts
         run: |
-          harbor-cli project list -ojson
+          harbor-cli project list 
+          #-ojson
