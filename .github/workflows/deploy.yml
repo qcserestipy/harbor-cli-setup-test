@@ -34,4 +34,4 @@ jobs:
       # Yaml output is also supported (e.g. -oyaml).
       - name: Create a Harbor Project
         run: |
-          harbor-cli project create MyGithubActionsProject-${{ github.run_id }} -v
+          harbor-cli project create MyGithubActionsProject-${{ github.run_id }} --storage-limit 25GB
